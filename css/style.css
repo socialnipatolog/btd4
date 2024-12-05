@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+    background-color: #000;
+    color: #e0f7ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.game-container {
+    width: 400px;
+    height: 700px;
+    background-color: #000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.image-container {
+    width: 100%;
+    height: 300px;
+    background: url('../img/dusk.jpeg') center/cover no-repeat;
+    /* Removed border for the scene container */
+}
+
+.textbox {
+    width: 90%;
+    background-color: #000;
+    color: #e0f7ff;
+    padding: 20px;
+    margin-top: 20px;
+    border: 2px solid #fff;
+    /* Clean white border */
+    text-align: center;
+    font-size: 18px;
+}
+
+.term {
+    font-size: 22px;
+    /* Slightly larger font size for term */
+    margin-bottom: 10px;
+}
+
+.options {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option {
+    font-family: 'VT323', monospace;
+    /* Consistent font */
+    font-size: 18px;
+    background-color: #2e3347;
+    /* Updated button color */
+    color: #e0f7ff;
+    padding: 10px 20px;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.option:hover {
+    background-color: #3a3f58;
+    /* Slightly lighter shade for hover */
+    transform: scale(1.05);
+    /* Subtle button scale effect */
+}
+
+.score {
+    margin-top: 10px;
+    font-size: 18px;
+}

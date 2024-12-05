@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond the dusk</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/main_img.jpeg">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    <div class="game-container">
+        <div class="image-container" id="scene-image"></div>
+        <div class="textbox" id="scene-text">
+            <p class="term" id="term"></p>
+            <p id="description"></p>
+        </div>
+        <div class="options" id="options-container"></div>
+        <div class="score" id="score">Skóre: 0</div>
+    </div>
+
+    <script>
+        let score = 0;
+        let currentLevel = 0;
+
+        // Array of levels
+        const levels = [
+            {
+                term: "Mental health - Duševní zdraví",
+                description: "Dusk feels overwhelmed by studies and hasn’t slept properly for days.",
+                options: [
+                    { text: "Take a break and consider speaking to a mental health counselor.", isCorrect: true },
+                    { text: "Push through, telling yourself you just need to 'be stronger.'", isCorrect: false }
+                ]
+            },
+            {
+                term: "Self-Harm - Sebepoškozování",
+                description: "You see Dusks arm with fresh scratches. He tries to cover them up when noticed.",
+                options: [
+                    
+                    { text: "I´m here if you ever want to talk about what´s going on.", isCorrect: true },
+                    { text: "You shouldn´t do things like that to yourself.", isCorrect: false }
+                ]
+            },
+            {
+                term: "Substance abuse - Zneužívání návykových látek",
+                description: "Dusk have been drinking heavily, experimenting with drugs and skipping class lately.",
+                options: [
+                    { text: "Avoid the topic – It´s not my place to interfere.", isCorrect: false },
+                    { text: "Ask if everything is okay and suggest seeking help if needed.", isCorrect: true }
+                ]
+            },
+            {
+                term: "Anxiety - Úzkost",
+                description: "Dusk struggles to speak up in a group project, visibly shaking and sweating.",
+                options: [
+                    { text: "Say: Just relax; it’s not a big deal.", isCorrect: false },
+                    { text: "Say: Take your time—we’re here to support you.", isCorrect: true }
+                ]
+            },
+            {
+                term: "Hopelessness - Beznaděj",
+                description: "Dusk fails an exam and says: It’s useless; I’ll never be good enough.",
+                options: [
+                    { text: "You’re overreacting—it’s just one exam.", isCorrect: false },
+                    { text: "One failure doesn’t define you—let’s figure out what went wrong.", isCorrect: true }
+                ]
+            },
+            {
+                term: "Grief - Zármutek",
+                description: "Dusk hasn’t spoken much since losing a loved one and avoids mentioning them.",
+                options: [
+                    { text: "I’m here if you want to share memories or just talk.", isCorrect: true },
+                    { text: "You should try to focus on the good things in life now.", isCorrect: false }
+                ]
+            },
+            {
+                term: "Overdose - Předávkování",
+                description: "Dusk casually mentions: I’ve been taking extra pills lately—just a few more than prescribed.",
+                options: [
+                    { text: "That’s not a big deal; just be careful next time.", isCorrect: false },
+                    { text: "That’s worrying—can we talk about how you’ve been feeling and maybe get some help?", isCorrect: true }
+                ]
+            },
+            {
+                term: "Recovery - Zotavení",
+                description: "Dusk shares: I’m trying to rebuild, but I feel like I’ll never really get better.",
+                options: [
+                    { text: "You’re being too hard on yourself—just try to stay positive.", isCorrect: false },
+                    { text: "Recovery takes time, but every step you take matters.", isCorrect: true }
+                ]
+            },
+            {
+                term: "Hotline - Linka pomoci",
+                description: "Dusk confesses: Sometimes, I think about calling a hotline, but I feel like they wouldn’t understand.",
+                options: [
+                    { text: "They’re trained to listen—would you feel better if I sat with you while you call?", isCorrect: true },
+                    { text: "You should just call them—it’s their job to deal with it.", isCorrect: false }
+                ]
+            },
+            {
+                term: "Suicide attempt - Pokus o sebevraždu",
+                description: "Dusk remarks: I’ve thought about ending things before, but it’s not like I actually did anything.",
+                options: [
+                    { text: "If you didn’t act on it, it’s not a big deal.", isCorrect: false },
+                    { text: "Thinking about that is serious—can we talk about finding someone to help?", isCorrect: true }
+                ]
+            },
+        ];
+
+        // Function to load a level
+        function loadLevel(index) {
+            if (index >= levels.length) {
+                alert("Congratulations! You've completed all levels.");
+                return;
+            }
+
+            const level = levels[index];
+            document.getElementById("term").innerText = level.term;
+            document.getElementById("description").innerText = level.description;
+
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = ""; // Clear previous options
+
+            level.options.forEach((option, i) => {
+                const button = document.createElement("button");
+                button.className = "option";
+                button.innerText = option.text;
+                button.onclick = () => checkAnswer(option.isCorrect);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        // Function to check answer
+        function checkAnswer(isCorrect) {
+            if (isCorrect) {
+                score++;
+                alert("Correct! Great choice.");
+            } else {
+                alert("Wrong! Try to make better choices next time.");
+            }
+            document.getElementById("score").innerText = "Skóre: " + score;
+            currentLevel++;
+            loadLevel(currentLevel);
+        }
+
+        // Start the game
+        loadLevel(currentLevel);
+    </script>
+</body>
+
+</html>
